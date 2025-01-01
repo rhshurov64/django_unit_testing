@@ -7,6 +7,7 @@ from test_app.models import DummyData
 class DummyDataModelTest(TestCase):
     # Test unique name constraint
     def test_unique_name(self):
+        print("__Start")
         DummyData.objects.create(first_name="Rakibul", last_name="Hasan", age=24)
 
         with self.assertRaises(IntegrityError):
@@ -47,3 +48,5 @@ class DummyDataModelTest(TestCase):
             x.full_clean()
         except ValidationError as e:
             self.assertIn("age", str(e))
+
+        self.test_unique_name()
